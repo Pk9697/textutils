@@ -1,9 +1,10 @@
 import Navbar from "./Navbar";
+import TextForm from "./TextForm";
 function App() {
   return (
     <>
       <Navbar title="TextUtils2"/>
-      <div>App component</div>
+      <TextForm header="Enter your text here"/>
       
     </>
   );
