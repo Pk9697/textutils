@@ -23,6 +23,16 @@ export default function TextForm(props) {
     const handleOnChange=(event)=>{
         // console.log("changed");
         setText(event.target.value);
+        document.querySelector('#copy-btn').innerText = 'Copy Text';
+
+    }
+
+    const handleCopy=()=>{
+        let text=document.getElementById("myBox");
+        text.select();
+        navigator.clipboard.writeText(text.value);
+        // document.getElementById("copy-btn").value="Copied";
+        document.querySelector('#copy-btn').innerText = 'Copied';
     }
 
     const toggleStyle=()=>{
@@ -61,12 +71,13 @@ export default function TextForm(props) {
         <div className="container" style={myStyle}>
             <h1>{props.header}</h1>
             <div className="mb-3" style={myStyle}>
-                <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
-                <textarea style={myStyle} className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="8"></textarea>
+                <label htmlFor="myBox" className="form-label">Example textarea</label>
+                <textarea style={myStyle} className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
             </div>
             <button className="btn btn-primary me-2 mb-2" onClick={handleUpClick}>Convert to Upper case</button>
             <button className="btn btn-primary me-2 mb-2" onClick={handleLoClick}>Convert to Lower case</button>
             <button className="btn btn-primary me-2 mb-2" onClick={handleClearClick}>Clear</button>
+            <button className="btn btn-primary me-2 mb-2" id="copy-btn" onClick={handleCopy}>Copy Text</button>
         </div>
         <div className="container my-3" style={myStyle}>
             <h2>Your Text Summary</h2>
