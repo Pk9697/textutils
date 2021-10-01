@@ -7,18 +7,21 @@ export default function TextForm(props) {
         // console.log(text);
         let newtext=text.toUpperCase();
         setText(newtext);
+        props.showAlert("Converted to Upper case!","success");
     }
     const handleLoClick=()=>{
         // console.log("btn clicked");
         // console.log(text);
         let newtext=text.toLowerCase();
         setText(newtext);
+        props.showAlert("Converted to Lower case!","success");
     }
     const handleClearClick=()=>{
         // console.log("btn clicked");
         // console.log(text);
         
         setText('');
+        props.showAlert("Text area cleared!","success");
     }
     const handleOnChange=(event)=>{
         // console.log("changed");
@@ -33,6 +36,7 @@ export default function TextForm(props) {
         navigator.clipboard.writeText(text.value);
         // document.getElementById("copy-btn").value="Copied";
         document.querySelector('#copy-btn').innerText = 'Copied';
+        props.showAlert("Copied to Clipboard!","success");
     }
 
     // const toggleStyle=()=>{
