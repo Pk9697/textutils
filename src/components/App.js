@@ -1,8 +1,9 @@
 import { useState } from "react/cjs/react.development";
 import Navbar from "./Navbar";
-import TextForm from "./TextForm";
+// import TextForm from "./TextForm";
 import '../App.css'
 import Alert from "./Alert";
+import About from "./About";
 function App() {
   const [mode,setMode]=useState('light');
   const [alert,setAlert]=useState(null);
@@ -41,9 +42,13 @@ function App() {
     <>
       <Navbar id="navbar" title="TextUtils2" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert}/>
-      <div className="container py-3" id="textform" >
+      {/* <div className="container py-3" id="textform" >
           <TextForm header="Enter your text here"  mode={mode} showAlert={showAlert}/>
+      </div> */}
+      <div className="container">
+        <About mode={mode}/>
       </div>
+
     </>
   );
 }
