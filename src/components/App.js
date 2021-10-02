@@ -1,9 +1,16 @@
 import { useState } from "react/cjs/react.development";
 import Navbar from "./Navbar";
-// import TextForm from "./TextForm";
+import TextForm from "./TextForm";
 import '../App.css'
 import Alert from "./Alert";
 import About from "./About";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 function App() {
   const [mode,setMode]=useState('light');
   const [alert,setAlert]=useState(null);
@@ -40,15 +47,24 @@ function App() {
 
   return (
     <>
-      <Navbar id="navbar" title="TextUtils2" mode={mode} toggleMode={toggleMode}/>
+    <Router>
+    <Navbar id="navbar" title="TextUtils2" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert}/>
-      {/* <div className="container py-3" id="textform" >
-          <TextForm header="Enter your text here"  mode={mode} showAlert={showAlert}/>
-      </div> */}
-      <div className="container">
-        <About mode={mode}/>
-      </div>
-
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route exact path="/about">
+            <div className="container">
+              <About mode={mode}/>
+            </div>
+          </Route>
+          <Route exact path="/">
+            <div className="container py-3" id="textform" >
+              <TextForm header="Enter your text here"  mode={mode} showAlert={showAlert}/>
+            </div>
+          </Route>
+        </Switch>
+    </Router>
     </>
   );
 }
